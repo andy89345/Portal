@@ -1,0 +1,740 @@
+﻿
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>SQF Search</title>
+    <style>
+
+        .p2 {
+            position: absolute;
+            top: 450px;
+            left: 10px
+        }
+
+        .p3 {
+            float: left;
+            position: relative;
+            margin: 6px;
+            min-width: 10%
+        }
+        .p4 {
+            width: 80%;
+            float: left;
+            position: relative;
+            bottom: 20px;
+            left: 30px
+        }
+        .p5 {
+            height: 100%;
+            width: 100%;
+            padding: 0px;
+            position: absolute;
+            top: 0px;
+            left: 1px
+        }
+        .p6 {
+            width:300px;
+            position: absolute;
+            top: 50px;
+            left: 0px
+        }
+        .p7 {
+            position: absolute;
+            top: 25px;
+            left: 0px
+        }
+        .p8 {
+            float: left;
+            position: relative;
+            margin: 6px;
+           
+        }
+        .p9 {
+            float: left;
+            position: relative;
+            margin: 6px;
+            min-width: 10%
+        }
+        .p10 {
+            
+            position: relative;
+            margin: 6px;
+        }
+        .content {
+            display: flex; /* 採用 flex 排版 */
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            position: absolute;
+            top: 0px
+        }
+
+        .jumbotron2 {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0rem;
+            margin-top: 0;
+            background-color: #000000;
+            border-radius: .2rem
+        }
+        .jumbotron3 {
+            padding: 2rem 1rem;
+            margin-bottom: auto;
+            margin-top: auto;
+            background-color: #ffffff;
+            border-radius: .2rem
+        }
+        .jumbotron4 {
+            top: 0px;
+            left: 0px;
+            position: absolute;
+            padding: 2.5rem 20rem;
+            
+            background-color: #003D79;
+            border-radius: .2rem
+        }
+        .jumbotronSearch {
+            top: 10px;
+            left: 30px;
+            right: 10px;
+            height: auto;
+            padding: 1rem 1rem;
+            background: rgb(211,211,211);
+            border-radius: 2rem;
+            margin-bottom: 0rem;
+            margin-top: 15px;
+            margin-left: 10px;
+            margin-right: 18px;
+        }
+
+        .side-menu {
+            /* 設固定寬度，flex-grow 預設 0，flex-shrink 預設 1 */
+            width: 300px;
+            height: 100%;
+            background-color: #1a1a1a;
+            position: relative
+        }
+        .side-menu::-webkit-scrollbar {
+            width: 5px;
+        }
+        .side-menu::-webkit-scrollbar-thumb {
+            border-radius: 100px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+            background: white;
+                
+        }
+
+        .main-win {
+            /* 因 side-menu flex-grow=0，main-win flex-grow=1 吃掉 100% 多餘寬度 */
+            flex-grow: 1;
+            background-color: #000000;
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+        }
+
+        .has_children {
+            cursor: pointer;
+            width: 300px;
+        }
+
+        .highlight {
+            background: #F60;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+        }
+        .bg-blue {
+            background-color: #003D79;
+        }
+        .send_button {
+            height: 38px;
+            background-color: #FFFFFF;
+        }
+        .pretty_select {
+            
+            background-repeat: no-repeat;
+            background-image: url("/static/img/arrow2.png"); /* Add custom arrow */
+        }
+        .wrap {
+            max-width: 960px;
+            margin: 20px auto 0 auto;
+            height: auto;
+        }
+        .search {
+            position: relative;
+            width: 80%;
+            float: left;
+        }
+        .search-btn {
+            border-radius: 10px;
+            width: 33px;
+            height: 33px;
+            background-color: #ffffff;
+            color: #808080;
+            outline: none;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+            position: relative;
+            top: -36px;
+            left: 253px;
+         
+        }
+        .search-bar-lenth{
+            width:350px;
+        }
+        .search-bar {
+            
+            min-width: 285px;
+            height: 40px;
+            position:relative;
+            left:6px;
+            
+        }
+        input {
+            border-radius: 10px;
+            width: 100%;
+            background-color: #E0E0E0;
+        }
+        
+     
+        .pp {
+            
+            float:left;
+            margin-right: 10px;
+            margin-top: 5px;
+                      
+
+        }
+        .select_jumbotron {
+            width: 100%;
+            float: right;
+            height: 74px;
+            padding: 0.5rem 0.5rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            margin-bottom: 0rem;
+            margin-top: 0px;
+            margin-left: 0px;
+            
+        }
+        body {
+            
+            padding: 0px;
+        }
+        .dashboard_left {
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 0px;
+            width: 94%;
+            height: 25px;
+            padding-top: 20px;
+            position: relative;
+            left:6px;
+        }
+      
+        .img {
+           margin-top: 0;
+        }
+        .search-bar-margin{
+            padding-top: 10px;
+        }
+        .group_title{
+            position: relative;
+            left:8px;
+            
+        }
+        .yoyoyo{
+            min-width:35%
+        }
+        .loading {
+            width: 35px;
+            height: 35px;
+            display: none;
+            background: url(/static/loadingimage.gif) no-repeat;
+            cursor: wait;
+        }
+        .preloader { /*   這是整個會蓋住畫面的底色色塊  */
+            background: rgba(255,255,255,0.6);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0%;
+            top: 0%;
+            z-index: 9998;
+            display: none;
+        }
+        .status { /*   這是中間loading的gif坐標css,我們盡量讓他畫面置中  */
+            position: fixed;
+            width: 218px;
+            height: 419px;
+            margin-left: -140px;
+            margin-top: -160px;
+            left: 50%;
+            top: 50%;
+        }
+        .CCTV_BUTTON {
+            width:auto;
+            float: right;
+        }
+        .logo_style1{
+            position:absolute;
+            bottom:-350px;
+
+        }
+        .logo_style2{
+            position:relative;
+        
+        }
+    </style>
+</head>
+
+<body id="full_screan">
+
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10.12.5/dist/sweetalert2.all.min.js"></script>
+    <!-- Navbar content -->
+
+    <input type="hidden" id="name_haha" name="FLEET" value={{PATH_FLEET}}>
+    <input type="hidden" id="name_list" name="name_list" value='{{new_name_list}}'>
+    <input type="hidden" id="light_list" name="light_list" value='{{light_status_id_list}}'>
+    <input type="hidden" id="cctv_list" name="cctv_list" value='{{first_url_array}}'>
+    <input type="hidden" id="ajax_web" name="ajax_web" value='{{get_new_web}}'>
+    <input type="hidden" id="cctv_button_status" name="cctv_button_status" value='{{cctv_status_id_list}}'>
+    <input type="hidden" id="cctv_button_status2" name="cctv_button_status2" value='{{cctv_button_status_list}}'>
+    <input type="hidden" id="lan_hidden" value='{{LANGUAGE}}'>
+
+    <div class="content">
+        <div class="side-menu" style="overflow-y: scroll; overflow-x: hidden;">
+
+            <!--
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            -->
+            <div class="search-bar-margin">
+                <form action="{{ url_for('Search',vessel_group2=vsg,lan=LANGUAGE) }}" method="get" class="NoPrint">
+                    <div class="search">
+                        <input class="search-bar" type="text" name="search" id="search" placeholder="Vessel" face="fantasy">
+                        <button id="search_load" class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+
+                    </div>
+                </form>
+
+
+
+            </div>
+
+            <div class="group_title">
+                <font style="font-weight:bold; font-size:30px; color:#ffffff; position:relative; bottom:30px">{{vsg}}</font>
+            </div>
+
+
+            <div class="p6">
+
+                <form action="{{ url_for('Path2',vessel_group=vsg,lan=LANGUAGE) }}" method="get" class="NoPrint">
+                    <br>
+
+
+
+                    {% for name,gps,head,vilocity,time,video,login_url,light_status_id_list,cctv_id,cctv_url in mylist %}
+                    <div class="dashboard_left">
+
+                        <img class="pp" id={{light_status_id_list}} src={{video}} width="17" height="17" style="position:relative; top:3px;">
+
+                        <a value="{{name}}" id="btn2" href="{{url_for('Path3',rock_name=name,vessel_group2=vsg,lan=LANGUAGE)}}" onclick="test_function()" style=" float:left; color:black; border-radius: 15px; text-decoration:none;">
+
+                            <font style="font-weight:bold; font-size:20px; color:#ffffff;" class="vessel_name">{{name}}</font>
+
+                        </a>
+
+                        <div>
+                            <img style="margin-top:9px" id={{cctv_id}} src="{{cctv_url}}" width="17" height="17" class="CCTV_BUTTON" type="button" value='{{login_url}}' onclick="cctv_button_click('{{url_for('CCTV',vessel_name=name,lan=LANGUAGE)}}','{{login_url}}','{{cute_dog}}','{{cctv_url}}')">
+                        </div>
+                        <br>
+
+                    </div>
+                    <hr />
+                    {% endfor %}
+
+
+
+
+                    <div>
+
+                    </div>
+                </form>
+
+
+
+            </div>
+            <br>
+
+
+
+        </div>
+        <div class="main-win">
+            <div id="loading"></div>
+            <div class="jumbotron2">
+
+                <!--
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                -->
+                <div class="p5">
+                    <iframe id="abgne_iframe" class="screen" src='{{IFRAME_PATH}}'></iframe>
+
+                </div>
+                <form id="vessel_track" action="{{ url_for('Path2',vessel_group=vsg,lan=LANGUAGE) }}" method="get" class="NoPrint">
+                    <div class="p4">
+
+                        <div class="p10">
+                            <img id="vessel_track_img" src='/static/img/vessel_track_img2.png' style="position:relative; top:10px; height:40px;">
+                        </div>
+                        <div class="p8">
+                            <select name="get_ship_name" id="eid" style="margin-top:5px; height: 35px; font-size:20px; color:#000000; font-weight:bold;  background-color:#ffffff; border: 0; display: block; border-radius: 10px;">
+
+                                <option id="select_title" value="Vessel">{{select_name}}</option>
+                                {% for i in Ship_name %}
+                                <option value={{i}}>{{i}}</option>
+                                {% endfor %}
+
+
+                            </select>
+                        </div>
+
+
+                        &nbsp
+                        <div class="p3">
+                            <input id="start_date" style="margin-top:5px; height: 35px; font-size:20px; color:#000000; font-weight:bold; background-color:#ffffff; border: 0; display: block; " type="date" name="get_date"
+                                   value={{date1}}>
+
+
+                        </div>
+
+                        &nbsp
+                        <div class="p3">
+                            <input id="end_date" style="margin-top:5px; height: 35px; font-size:20px; color:#000000; font-weight:bold; background-color:#ffffff; border: 0; display: block; " type="date" name="get_date1"
+                                   value={{date2}}>
+                        </div>
+                        &nbsp
+
+
+                        <div class="p9">
+                            <input id="btn" class="send_button" type="submit" value="Query" style="margin-top:4px; height: 35px; font-size:20px; color:#000000; font-weight:bold; background-color:#ffffff">
+                        </div>
+
+
+
+                    </div>
+
+                    <br>
+                    <script src="/static/scripts/popper.min.js"></script>
+                    <script src="/static/scripts/jquery-3.1.1.min.js"></script>
+                    <script src="/static/scripts/bootstrap.min.js"></script>
+                    <script src="/static/scripts/respond.js"></script>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="preloader">
+        <div class="status">
+            <img id="loading_gif" style="z-index:9999" src='/static/img/loading.gif' />
+        </div>
+    </div>
+
+    <script>
+        var language = document.getElementById("lan_hidden").value;
+        if (language == "TW") {
+            $("#search").attr("placeholder", "船名");
+            $("#btn").attr("value", "查詢");
+            $("#vessel_track_img").attr("src", "/static/img/Vessel Track-CH-v3.png");
+            document.getElementById("select_title").textContent = "船名";
+            //$("#select_title").attr("value", "船名");
+        }
+
+        $("#search_load").on('click', function () {
+            //alert("test");
+            $(".preloader").show();
+        });
+
+        $("#btn2").on('click', function () {
+            //alert("test");
+            $(".preloader").show();
+        });
+        window.setTimeout(function () {
+            reloadIFrame()
+        }, 100);
+        var src;
+        var get_cctv_status = document.getElementById('cctv_button_status').value;
+        var cctv_final_id_array = [];
+        cctv_id_status_list = get_cctv_status.split(",")
+        for (var cctv_x of cctv_id_status_list) {
+            var cctv_url_split = cctv_x.split("'");
+            var real_cctv_url = cctv_url_split[1];
+            cctv_final_id_array.push(real_cctv_url);
+        }
+        //alert(cctv_final_id_array[3]);
+        for (var cctv_y = 0; cctv_y <= (cctv_id_status_list.length-1);cctv_y=cctv_y+1) {
+            (function (index) {
+                //alert(cctv_final_id_array[index]);
+                var yoyoyo = cctv_final_id_array[index];
+                var yoyoyo_status = document.getElementById(yoyoyo).getAttribute("value");
+                var click_if = document.getElementById(yoyoyo).getAttribute("src");
+                //alert(yoyoyo_status)
+                if (yoyoyo_status == "NoData") {
+                    document.getElementById(yoyoyo).style.display = "none";
+                }
+                else {
+                    document.getElementById(yoyoyo).style.display = "block";
+                    //alert(click_if)
+                    if (click_if == "/static/img/V4-CamClose-6.png") {
+                        document.getElementById(yoyoyo).onclick = function () {};
+                    }
+                }
+            }
+            )(cctv_y)
+        }
+
+        function test_function() {
+            $(".preloader").show();
+            //alert("hahaha");
+        }
+
+        function cctv_button_click(data1, data2, data3, data4) {
+            if (data4 != "/static/img/V4-CamClose-6.png") {
+                //alert(data4);
+                login(data1, data2, data3);
+            }
+
+        }
+
+        function login(OpenCam, login_data, test_img) {
+
+            if (login_data != 'NoData') {
+                cctv_button_name = window.open(login_data, 'haha', 'height=410,width=600,left=700,top=200','addressbar=no,location=no,menubar=no,toolbar=no, status=no');//_blank
+
+
+                window.setTimeout(function () {
+                    cctv_button_name.location.href = OpenCam
+
+                }, 1000);
+
+
+            }
+            else {
+                cctv_button_name = window.open(test_img, '_blank', 'height=500,width=700,left=700,top=200')
+            }
+
+            /*
+            if (login_data != 'NoData') {
+
+                //swal("Hello world!");
+
+                Swal.fire({
+                    title: 'Sweet!',
+                    html: '<input type="button" href="http://videosoft:videosoft@surveillance.lhsatellite.com:8080/vsapi/stream?machineid=BroCombo&streamid=1&camera=3">links</input>',
+                    text: 'Modal with a custom image.',
+                    imageUrl: login_data,
+                    imageWidth: 700,
+                    imageHeight: 400,
+
+                    imageAlt: 'Custom image',
+
+                })
+
+
+
+            }
+            else {
+                cctv_button_name = window.open(test_img, '_blank', 'height=500,width=700,left=700,top=200')
+            }
+            */
+        }
+
+
+        $("#btn").on('click', function () {
+            var start_date_value = document.getElementById("start_date").value;
+            var end_date_value = document.getElementById("end_date").value;
+
+            if ((start_date_value != "") &&(end_date_value!="")) {
+            $(".preloader").show();
+            window.setTimeout(function () {
+                reloadIFrame()
+            }, 500);
+        }
+
+        else {
+            alert("Please enter date..")
+            return false;
+        }
+        //goToPage("{{url_for('Map',vessel_group=vsg)}}")
+        //goToPage("http://youtube.com")
+        });
+
+
+        //get_iframe_src = document.getElementById("abgne_iframe").src
+        reloadIFrame();
+        window.setInterval(function () {
+            reloadIFrame()
+        }, 600000);
+
+        function reloadIFrame() {
+
+            document.getElementById('abgne_iframe').contentWindow.location.reload();
+        }
+        function goToPage(parm) {
+            //document.getElementById("abgne_iframe").src = parm;
+            document.getElementById("abgne_iframe").contentWindow.document.location.href = "{{url_for('Map',vessel_group=vsg)}}"
+            //document.getElementById("vessel_track").style.display = "none";
+            src = parm;
+        }
+
+        var int = setInterval(function () {//ajax
+
+            var test_array = ["adsad", "bds", "cdsd"];
+            var path_value = document.getElementById("name_haha").value;
+            var new_name_list = document.getElementById("name_list").value;//-----name,gps,head,vilocity,time,video,login_url
+            var web_url = document.getElementById("ajax_web").value;
+            var CCTV_ID = document.getElementById("cctv_button_status").value;
+            var url_array = [];
+            var light_array = [];
+            var CCTV_array = [];
+
+            CCTV_list = CCTV_ID.split(",");
+            for (var CCTV_TMP of CCTV_list) {
+                var CCTV_split = CCTV_TMP.split("'");
+                var real_CCTV = CCTV_split[1];
+                CCTV_array.push(real_CCTV);
+
+            }
+            //alert(CCTV_array)
+
+
+            web_list = web_url.split(",");
+            for (var url of web_list) {
+                var url_split = url.split("'");
+                var real_url = url_split[1];
+                url_array.push(real_url);
+                //alert(url_array[0]);
+            }
+
+            new_name_list2 = new_name_list.split(",");
+            for (var name of new_name_list2) {
+                //alert(name);
+            }
+            var new_light_list = document.getElementById("light_list").value;//-----name,gps,head,vilocity,time,video,login_url
+            new_light_list2 = new_light_list.split(",");
+            for (var light of new_light_list2) {
+                var light_split = light.split("'");
+                var real_light = light_split[1];
+                light_array.push(real_light);
+                //alert(light_array[0]);
+            }
+            var new_cctv_list = document.getElementById("cctv_list").value;//-----name,gps,head,vilocity,time,video,login_url
+            new_cctv_list2 = new_cctv_list.split(",")
+            for (var cctv of new_cctv_list2) {
+                //alert(cctv);
+            }
+            //for (i = 0, j = 0, k = 0; i <= new_name_list2.length, j <= new_light_list2.length, k <= new_cctv_list2.length; i = i + 1, j = j + 1, k = k + 1) {
+                //var vessel_data = '<a value="{{ name }} " id="goto_detail2" href="{ { url_for('Path3', rock_name = name, vessel_group2 = vsg) } } " style=" float: left; color: black; border - radius: 15px; text - decoration: none; ">< font class="vessel_name" id = "goto_detail2" face = "sans-serif" > {{ name }}</font ></a >';
+               // var light_data = "";
+                //var cctv_data = "";
+            var test_data ="#goto_detail2"
+            for (i = 0; i <= (new_light_list2.length - 1); i = i + 1) {
+                //alert(i)
+                    //alert(url_array[i])
+                    (function (index) {
+                        $.ajax(
+                            {
+
+                                url: url_array[index],
+                                type: "get",
+                                //data: ajax_list,
+                                dataType: "html",
+                                headers: {
+                                    'Access-Control-Allow-Origin': '*',
+                                },
+                                success: function (data) {
+                                    var data2 = data.split("<body>");
+                                    var data3 = data2[1];
+                                    var data4 = data3.split("</body>");
+                                    var data5 = data4[0];
+                                    var data6 = data5.split(",");
+                                    var data7 = data6[0];
+                                    var data8 = data6[1];
+                                    //alert(data8)
+
+                                    $("#" + light_array[index]).attr("src", data7);
+                                    //alert(CCTV_array[index])
+                                    $("#" + CCTV_array[index]).attr("src", data8);
+
+                                    //alert(light_array[index])
+                                },
+                                error: function () {
+                                    //$("#" + light_array[index]).attr("src", data7);
+                                    //$("#" + CCTV_array[index]).attr("src", data8);
+                                    //alert("error!!")
+                                }
+
+
+                            }
+                        )
+                        var click_if_cctv = document.getElementById(CCTV_array[index]).getAttribute("src").toString().replace(/(\r\n\t|\n|\r\t)/gm, "");
+                        var click_if_cctv2 = click_if_cctv
+                        //alert(click_if_cctv2)
+                        if (click_if_cctv2 == '/static/img/V4-CamClose-6.png') {
+                            //alert("error");
+                            document.getElementById(CCTV_array[index]).onclick = function () {};
+                        }
+                    }
+                    )(i)
+            }
+
+
+            //}
+        }, 10000)
+
+    </script>
+</body>
+
+</html>
+
+<address>
+    <strong>Andy:</strong>   <a href="mailto:andy89345@gmail.com">andy89345@gmail.com</a><br />
+    <strong>Lunghwa:</strong> <a href="mailto:andy@lunghwa.com.tw">andy@lunghwa.com.tw</a>
+</address>
+

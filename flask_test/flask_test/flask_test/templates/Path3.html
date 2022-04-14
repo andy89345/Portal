@@ -1,0 +1,554 @@
+﻿
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>SQF Search</title>
+    <style>
+        details {
+            background: #eee;
+            margin-bottom: 2rem;
+            padding: .5rem 1rem;
+        }
+        .p2 {
+            position: absolute;
+            top: 450px;
+            left: 10px
+        }
+
+        .p3 {
+            float: left;
+            position: relative;
+            margin: 6px;
+            min-width: 23%
+        }
+
+        .p4 {
+            width: 80%;
+            float: left;
+            position: relative;
+            bottom: 20px;
+            left: 30px
+        }
+
+        .p5 {
+            height: 100%;
+            width: 100%;
+            padding: 0px;
+            position: absolute;
+            top: 0px;
+            left: 1px
+        }
+
+        .p6 {
+            width: 350px;
+            position: relative;
+            margin-top: 0px;
+            padding-top: 0px;
+            left: 0px
+        }
+        .p7 {
+            float: left;
+            position: relative;
+            margin: 6px;
+            top:8px;
+        }
+
+        .p8 {
+            float: left;
+            position: relative;
+            margin: 6px;
+            min-width: 10%
+        }
+        .p9 {
+            
+            position: relative;
+            margin: 6px;
+        }
+        .content {
+            display: flex; /* 採用 flex 排版 */
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            position: absolute;
+            top: 0px
+        }
+
+        .jumbotron2 {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0rem;
+            margin-top: 0;
+            background-color: #000000;
+            border-radius: .2rem
+        }
+
+        .jumbotron3 {
+            padding: 2rem 1rem;
+            margin-bottom: auto;
+            margin-top: auto;
+            background-color: #ffffff;
+            border-radius: .2rem
+        }
+
+        .side-menu {
+            /* 設固定寬度，flex-grow 預設 0，flex-shrink 預設 1 */
+            width: 300px;
+            
+            background-color: #1a1a1a;
+            position: relative;
+            height: 100%;
+        }
+        .side-menu::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .side-menu::-webkit-scrollbar-thumb {
+            border-radius: 100px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+            background: white;
+        }
+        .main-win {
+            /* 因 side-menu flex-grow=0，main-win flex-grow=1 吃掉 100% 多餘寬度 */
+            flex-grow: 1;
+            background-color: #000000;
+        }
+
+        .has_children {
+            cursor: pointer;
+            width: 300px;
+        }
+
+        .highlight {
+            background: #F60;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bg-blue {
+            background-color: #003D79;
+        }
+
+        .send_button {
+            height :38px;
+            background-color: #FFFFFF;
+            
+        }
+
+        .pretty_select {
+            background-repeat: no-repeat;
+            background-image: url("/static/img/arrow2.png"); /* Add custom arrow */
+        }
+        .select_jumbotron {
+            width: 100%;
+            float: right;
+            height: 74px;
+            padding: 0.5rem 0.5rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            margin-bottom: 0rem;
+            margin-top: 0px;
+            margin-left: 0px;
+        }
+        input {
+            border-radius: 10px;
+            width: 100%;
+            background-color: #E0E0E0;
+        }
+        .search {
+            position: relative;
+            width: 100%;
+            float: left;
+        }
+
+        .search-btn {
+            border-radius: 10px;
+            width: 33px;
+            height: 33px;
+            background-color: #ffffff;
+            color: #808080;
+            outline: none;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+            position: relative;
+            top: -36px;
+            left: 258px;
+        }
+
+        .search-bar-lenth {
+            width: 350px;
+        }
+
+        .search-bar {
+            min-width: 285px;
+            height: 40px;
+            position: relative;
+            left: 6px;
+        }
+        .dashboard_button {
+            padding-left: 18px;
+            border-radius: 10px;
+            margin-top: 53px;
+            width: 96%;
+            height: 40px;
+            position:relative;
+            left:7px;
+        }
+        .jumbotronSearch {
+            left: 30px;
+            right: 10px;
+            height: auto;
+            padding: 1rem 1rem;
+            background: rgb(211,211,211);
+            border-radius: 2rem;
+            margin-bottom: 0rem;
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 18px;
+        }
+        .pp {
+            float: right;
+            margin-right: 10px;
+            margin-top: 0px
+        }
+        .pp2 {
+            float: right;
+            
+            position:relative;
+            bottom:10px;
+
+        }
+        
+        .dashboard_button:hover {
+            background-color: gray;
+        }
+        select {
+            border: 0;
+            display: block
+        }
+        .search-bar-margin {
+            padding-top: 10px;
+        }
+        .pp3 {
+            float: right;
+            margin-right: 10px;
+            margin-top: 5px
+        }
+        .screen {
+            height:100%;
+            width: 100%;
+        }
+        .preloader { /*   這是整個會蓋住畫面的底色色塊  */
+            background: rgba(255,255,255,0.6);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0%;
+            top: 0%;
+            z-index: 9998;
+            display: none;
+        }
+        .status { /*   這是中間loading的gif坐標css,我們盡量讓他畫面置中  */
+            position: fixed;
+            width: 218px;
+            height: 419px;
+            margin-left: -140px;
+            margin-top: -160px;
+            left: 50%;
+            top: 50%;
+        }
+        #btn2{
+            position:relative;
+            bottom:15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- Navbar content -->
+
+    <input type="hidden" id="ship_name_hidden"  value='{{rock_name2}}'>
+    <input type="hidden" id="gps_hidden"  value='{{gps}}'>
+    <input type="hidden" id="head_hidden"  value='{{head_angle}}'>
+    <input type="hidden" id="vilocity_hidden" value='{{vilocity_back}}'>
+    <input type="hidden" id="update_hidden"  value='{{go_update_time}}'>
+    <input type="hidden" id="online_ratio_hidden"  value='{{online_ratio}}'>
+    <input type="hidden" id="lan_hidden"  value='{{LANGUAGE}}'>
+    <div class="content">
+        <div class="side-menu" style="overflow-y: scroll; overflow-x: hidden;">
+
+
+            <!--
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            -->
+
+            <div class="search-bar-margin">
+                <form action="{{ url_for('Search',vessel_group2=vsg,lan=LANGUAGE) }}" method="get" class="NoPrint">
+                    <div class="search">
+                        <input class="search-bar" type="text" name="search" id="search" placeholder="Vessel" face="fantasy">
+                        <button id="gotoloading" class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="dashboard_button" style="padding-top:3px; border:2px; border-color:white; border-style:solid;">
+                <a id="btn2" href="{{ url_for('Path2',vessel_group=vsg,lan=LANGUAGE) }}" style="margin-top:5px; color:black; border-radius: 15px; text-decoration:none;">
+                    <font id="home_button" style="font-size:20px; font-weight:bold; color:#ffffff;">FLEET</font>
+                    <div class="pp2">
+                        <img src='/static/img/HOME.png' width="50" height="50">
+                    </div>
+                    <br>
+                </a>
+
+            </div>
+
+
+            <form action="{{ url_for('Path3',rock_name=rock_name2,vessel_group2=vsg,lan=LANGUAGE) }}" method="get" class="NoPrint" style="padding-top:0px; position:relative; left:6px;">
+
+
+
+
+
+                <div style="margin-top:20px">
+                    <font id="left_name" style="font-size:20px; font-weight:bold; color:#ffffff;">
+                        &nbspVessel&nbsp:&nbsp{{rock_name2}}
+
+                    </font>
+                </div>
+                <div style="margin-top:20px">
+                    <font id="left_gps" style="font-size:20px; font-weight:bold; color:#ffffff;">
+                        &nbspGPS&nbsp:&nbsp{{gps}}
+                    </font>
+                </div>
+                <div style="margin-top:20px">
+                    <font id="left_head" style="font-size:20px; font-weight:bold; color:#ffffff;">
+                        &nbspHead angle&nbsp:&nbsp{{head_angle}}
+                    </font>
+                </div>
+                <div style="margin-top:20px">
+                    <font id="left_velocity" style="font-size:20px; font-weight:bold; color:#ffffff;">
+                        &nbspVelocity(km/hr)&nbsp:&nbsp{{vilocity_back}}
+                    </font>
+                </div>
+                <div style="margin-top:20px">
+                    <font id="left_update_time" style="font-size:20px; font-weight:bold; color:#ffffff;">
+                        &nbspUpdate Time&nbsp:&nbsp{{go_update_time}}
+                    </font>
+                </div>
+                <div style="margin-top:20px">
+                    <font id="left_online_ratio" style="font-size:20px; font-weight:bold; color:#ffffff;">
+                        &nbspOnline Ratio&nbsp:&nbsp{{online_ratio}}
+                    </font>
+                </div>
+                <div style="margin-top:40px">
+                    <details style="border-radius: 30px; width:94%; position:relative; left:5px;">
+                        <summary id="cap_traffic" style="font-size:20px; font-weight:bold; color:#5E5E5E;">Captain Traffic</summary>
+                        <font style="font-size:20px; font-weight:bold; color:#5E5E5E;">
+
+                            <br>{{captain_account}}
+                            <br>{{captain_package}}
+                            <br>{{captain_left}}
+                        </font>
+
+                    </details>
+                </div>
+
+                <div style="margin-top:10px">
+                    <details style="border-radius: 30px; width:94%; position:relative; left:5px;">
+                        <summary id="crew_traffic" style="font-size:20px; font-weight:bold; color:#5E5E5E;">Crew Traffic</summary>
+                        {% for i in total_crew_list %}
+                        {% for i2 in i %}
+                        <font style="font-size:20px; font-weight:bold; color:#5E5E5E;">
+                            <br>{{i2}}
+                        </font>
+
+                        {% endfor %}
+                        <br>
+
+                        {% endfor %}
+                    </details>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <!--font size="4" color="black">
+                    Start_date&nbsp:&nbsp{{date1}}
+                </!--font><br><hr />
+                <font size="4" color="black">
+                    End_date&nbsp:&nbsp{{date3}}
+                </font><br><hr />-->
+
+
+            </form>
+
+
+            <br>
+
+
+
+
+
+        </div>
+        <div class="main-win">
+            <div class="jumbotron2">
+
+                <!--
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                -->
+                <div class="p5">
+                    <iframe id="abgne_iframe" class="screen" src="{{ map_path_yoyo }}" height=1000></iframe>
+                </div>
+                <form action="{{ url_for('Path3',rock_name=rock_name2,vessel_group2=vsg,lan=LANGUAGE) }}" method="get" class="NoPrint">
+                    <div class="p4">
+
+                        <div class="p9">
+                            <img id="vessel_track" src='/static/img/vessel_track_img2.png' style="position:relative; top:10px; height:40px;">
+                        </div>
+
+
+                        <div class="p3">
+                            <input id="start_date" style="background-color:#ffffff; margin-top:5px; height: 35px; font-size:20px; color:#000000; font-weight:bold; border: 0; display: block; " type="date" name="get_date"
+                                   value={{date1}}>
+
+
+                        </div>
+
+                        &nbsp
+                        <div class="p3">
+                            <input id="end_date" style="background-color:#ffffff; margin-top:5px; height: 35px; font-size:20px; color:#000000; font-weight:bold; border: 0; display: block; " type="date" name="get_date1"
+                                   value={{date2}}>
+                        </div>
+                        &nbsp
+
+
+                        <div class="p8">
+                            <input id="btn" class="send_button" type="submit" value="Query" style="margin-top:5px; height: 35px; font-size:20px; color:#000000; font-weight:bold; background-color:#ffffff;">
+
+                        </div>
+
+
+
+
+                    </div>
+
+                    <br>
+                    <script src="/static/scripts/popper.min.js"></script>
+                    <script src="/static/scripts/jquery-3.1.1.min.js"></script>
+                    <script src="/static/scripts/bootstrap.min.js"></script>
+                    <script src="/static/scripts/respond.js"></script>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="preloader">
+        <div class="status">
+            <img id="loading_gif" style="z-index:9999" src='/static/img/loading.gif' />
+        </div>
+    </div>
+    <script>
+        var language = document.getElementById("lan_hidden").value;
+        var ship_name_hidden = document.getElementById("ship_name_hidden").value;
+        var gps_hidden = document.getElementById("gps_hidden").value;
+        var head_hidden = document.getElementById("head_hidden").value;
+        var vilocity_hidden = document.getElementById("vilocity_hidden").value;
+        var update_hidden = document.getElementById("update_hidden").value;
+        var online_ratio_hidden = document.getElementById("online_ratio_hidden").value;
+
+        if (language == "TW") {
+            document.getElementById("left_name").textContent = "船名: " + ship_name_hidden;
+            document.getElementById("left_gps").textContent = "座標: " + gps_hidden;
+            document.getElementById("left_head").textContent = "航向角: " + head_hidden;
+            document.getElementById("left_velocity").textContent = "速度(公里/小時): " + vilocity_hidden;
+            document.getElementById("left_update_time").textContent = "最後更新時間: " + update_hidden;
+            document.getElementById("left_online_ratio").textContent = "在線率: " + online_ratio_hidden;
+            document.getElementById("cap_traffic").textContent = "船長流量資訊: ";
+            document.getElementById("crew_traffic").textContent = "船員流量資訊: ";
+            document.getElementById("home_button").textContent = "船隊首頁";
+            $("#btn").attr("value", "查詢");
+            $("#search").attr("placeholder", "船名");
+            $("#vessel_track").attr("src", "/static/img/Vessel Track-CH-v3.png");
+        }
+
+
+        window.setTimeout(function () {
+            reloadIFrame()
+        }, 500);
+        $("#btn").on('click', function () {
+            var start_date_value = document.getElementById("start_date").value;
+            var end_date_value = document.getElementById("end_date").value;
+            if ((start_date_value != "") & (end_date_value != "")) {
+                $(".preloader").show();
+                window.setTimeout(function () {
+                    reloadIFrame()
+                }, 500);
+            }
+
+            else {
+                alert("Please enter date..")
+                return false;
+            }
+
+        });
+        $("#btn2").on('click', function () {
+
+            $(".preloader").show();
+        });
+        $("#gotoloading").on('click', function () {
+
+            $(".preloader").show();
+        });
+        function reloadIFrame() {
+
+            document.getElementById('abgne_iframe').contentWindow.location.reload();
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+
+
+

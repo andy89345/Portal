@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<style>
+    .iframe_div{
+        width:70%;
+        min-height:100%;
+        background-color:black;
+        
+    }
+    .iframe_cam {
+        min-width: 550px;
+        min-height: 300px;
+    }
+
+    </style>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" style="min-height:100%; background-color:black;">
+<head>
+    <meta charset="utf-8" />
+    <title>CCTV</title>
+</head>
+
+<body style="min-height:100%">
+
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <div>
+        <font size="7" color="white">{{ship_name}}</font>
+    </div>
+    <div class="iframe_div">
+
+        <img class="iframe_cam" src={{iframe_url}}>
+    </div>
+    
+    <div>
+        {% for button_name,url2 in total_array %}
+
+        <input class="ALLCAM" id={{button_name}} type="button" value={{button_name}} onclick="mm('{{url2}}','{{button_name}}')" style="background-color:#E0E0E0">
+        {% endfor %}
+    </div>
+
+    <script>
+        var yoyoyo;
+        var btnID;
+      
+        function mm(data, camID) {
+            btnID = document.getElementById(camID);
+            $('input[id^="Cam"]').css("background-color", "#E0E0E0");//按鈕原來顏色
+
+            btnID.style.backgroundColor = '#0072E3';
+
+            yoyoyo = window.open(data, '_blank', "height=30,width=30,left=700,top=200");
+            setTimeout(function () {
+                yoyoyo.close()
+            }
+                , 200
+            );
+
+
+        }
+
+
+    </script>
+
+</body>
+</html>

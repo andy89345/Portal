@@ -1,0 +1,44 @@
+﻿<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>ERROR</title>
+
+</head>
+
+<body onload="alert('Vessel Error!')">
+
+    <script type="text/javascript">
+
+        setInterval(function () {
+
+            if (document.all) {
+
+                document.getElementById("alert").click();
+                
+            }
+
+            else {
+
+                var e = document.createEvent("MouseEvents");
+
+                e.initEvent("click", true, true);
+
+                document.getElementById("alert").dispatchEvent(e);
+                
+            }
+
+        },2000 );
+
+        function back() {
+            window.history.back();
+        }
+
+
+    </script>
+    <button id="alert" onclick="back()" class="search-btn" style="VISIBILITY: hidden"></button>
+    </body>
+
+</html>

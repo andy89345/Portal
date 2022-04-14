@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<head>
+    <meta http-equiv="refresh" content="60" />
+</head>
+<div style="margin-top: 60px">
+    <iframe src="{{ url_for('Dashboard') }}" height=600 width=1110></iframe>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Lunghwa</h2>
+            <a class="btn btn-default" href="http://www.lunghwa.com.tw/" style="font-size: 40px; ">http://www.lunghwa.com.tw/ &raquo;</a> <br>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Lunghwa_Monitor_System</h2>
+            <a class="btn btn-default" href="http://vesselstatus.eastasia.cloudapp.azure.com/Dashboard.aspx" style="font-size: 40px; ">http://vesselstatus.eastasia.cloudapp.azure.com/Dashboard.aspx &raquo;</a>
+        </div>
+
+    </div>
+</div> 
+
+
+    {% endblock %}
